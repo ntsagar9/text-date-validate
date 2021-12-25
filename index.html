@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input validate</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+        }
+
+        body > h2 {
+            text-align: center;
+        }
+
+        .input_section_wp {
+            display: flex;
+            padding-top: 10px;
+            justify-content: center;
+        }
+
+        .input_section {
+            width: 100%;
+            max-width: 300px;
+            margin-bottom: 15px;
+        }
+        .input_section input {
+            height: 34px;
+            width: 100%;
+        }
+        </style>
+</head>
+
+<body>
+    <h2>Date validate</h2>
+    <div class="input_section_wp">
+        <div class="input_section">
+            <label>Enter date</label>
+            <input type="text" autofocus data-date-text data-id="date-formate-id" placeholder="Enter date">
+        </div>
+    </div>
+    <div class="input_section_wp">
+        <div class="input_section">
+            <label>Final output format <strong>MM-DD-YYYY</strong> </label>
+            <input type="text" id="date-formate-id" placeholder="Final date" readonly>
+            <small>This input readonly</small>
+        </div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="./date-validate.js"></script>
+</body>
+
+</html>
