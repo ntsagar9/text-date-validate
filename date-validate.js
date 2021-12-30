@@ -203,7 +203,6 @@
         text = trimSign(text);
 
         if (!text.includes(DATE_SEPARATOR) && text.length === 4) {
-            console.log("asd");
             text = `${text.slice(0, 2)}${DATE_SEPARATOR}${text.slice(2)}`;
 
             const fourDigitFigure = text.split(DATE_SEPARATOR);
