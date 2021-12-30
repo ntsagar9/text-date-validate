@@ -4,6 +4,7 @@
     const DATE_SEPARATOR = "-";
     const SHORT_MONTHS = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
     const FULL_MONTHS = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"];
+    const DAYS = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
     const THIS_DAYS = ["this monday", "this tuesday", "this wednesday", "this thursday", "this friday", "this saturday", "this sunday"];
     const NEXT_DAYS = ["next monday", "next tuesday", "next wednesday", "next thursday", "next friday", "next saturday", "next sunday"];
     const monthWithout31Date = [4, 6, 9, 11];
@@ -32,8 +33,16 @@
         let sundayIsFirst = [...THIS_DAYS];
         sundayIsFirst.pop();
         sundayIsFirst = ["this sunday", ...sundayIsFirst];
-        const dayOfWeek = sundayIsFirst.indexOf(textdate);
-        if (dayOfWeek < 0) return;
+        let dayOfWeek = sundayIsFirst.indexOf(textdate);
+        if (dayOfWeek < 0) {
+            sundayIsFirst = sundayIsFirst.map(dayName => dayName.replace("this ", ""));
+            dayOfWeek = sundayIsFirst.indexOf(textdate);
+
+            // Day not found
+            if (dayOfWeek < 0) {
+                return;
+            }
+        };
 
         refDate.setHours(0,0,0,0);
         refDate.setDate(refDate.getDate() + +!!excludeToday + 
@@ -67,7 +76,7 @@
             return dateToFormated(addDayFromToday(3));
         } else if(smallText == ("tomorrow")) {
             return dateToFormated(addDayFromToday(1));
-        } else if (THIS_DAYS.includes(smallText)) {
+        } else if (THIS_DAYS.includes(smallText) || DAYS.includes(smallText)) {
             return dateToFormated(getThisDayOfTheWeek(smallText, false));
         } else if (NEXT_DAYS.includes(smallText)) {
             return dateToFormated(getNextWeekDayOfTheWeek(smallText, false));
